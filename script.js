@@ -1,103 +1,207 @@
-const modalidades = ["Ginástica", "Judô", "Surfe", "Vôlei"];
-
-//Com base na constante modalidade, 
-//Coloque o número que represente o esporte do seu grupo
-const escolha = 3;
-
-document.querySelector('body').style.backgroundImage = "url('img/"+modalidades[escolha]+".png')";
-document.querySelector('title').textContent = "Missão Olímpica | "+modalidades[escolha];
-document.querySelector('h1').innerHTML = "Missão Olímpica <br> "+modalidades[escolha];
-
 const caixaPrincipal = document.querySelector(".caixa-principal");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 
+const perguntas = [
+    {
+        enunciado: "Qual é o nome completo do Pozzobom?",
+        alternativas: [
+            {
+                texto: "João Otávio Pozzobom Bernardes de Souza",
+                afirmacao: "Acertou"
+            },
+            {
+                texto: "João Pedro Pozobom Bernardi de Souza",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "João Otávio Pozzobon da silva",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "João Otávio Augusto Pozzobon Crepaldi da Silva",
+                afirmacao: "Errou"
+            }            
+        ]
+    },
+    {
+        enunciado: "Qual é a comida favorita do Pozobom?",
+        alternativas: [
+            {
+                texto: "Macarrão",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "Sushi",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "Churasco",
+                afirmacao: "Acertou"
+            },
+            {
+                texto: "Hamburger",
+                afirmacao: "Errou"
+            }            
+        ]
+    },
+    {
+        enunciado: "Quantos graus de miopia e de astigmatimo ele tem?",
+        alternativas: [
+            {
+                texto: "Remus Lupin",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "Severus Snape",
+                afirmacao: "Acertou"
+            },
+            {
+                texto: "Gilderoy Lockhart",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "Minerva McGonagall",
+                afirmacao: "Errou"
+            }
+        ]
+    },
+    {
+        enunciado: "O que vc acha do Pozobom?",
+        alternativas: [
+            {
+                texto: "Incrivel",
+                afirmacao: "Acertou"
+            },
+            {
+                texto: "Perfeito",
+                afirmacao: "Acertou"
+            },
+            {
+                texto: "Deslumbrante",
+                afirmacao: "Acertou"
+            },
+            {
+                texto: "Magnífico",
+                afirmacao: "Acertou"
+            }
+        ]
+    },
+    {
+        enunciado: "Qual animal de estimação o Pozzobom tem?",
+        alternativas: [
+            {
+                texto: "Bichento",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "Trevor",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "Perebas",
+                afirmacao: "Acertou"
+            },
+            {
+                texto: "Edwiges",
+                afirmacao: "Errou"
+            }
+        ]
+    },
+    {
+        enunciado: "Qual time de futebol o Pozzobom torce?",
+        alternativas: [
+            {
+                texto: "Palmeiras lixo",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "Corintians timinho",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "Santos",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "São Paulo o maior do Brasil",
+                afirmacao: "Acertou"
+            }
+        ]
+    },
+    {
+        enunciado: "Qual o dia do aniversario do Pozzobom?",
+        alternativas: [
+            {
+                texto: "Alvus Dumbledore",
+                afirmacao: "Acertou"
+            },
+            {
+                texto: "Severus Snape",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "Minerva McGonagall",
+                afirmacao: "Errou"
+            },
+            {
+                texto: "Gellert Grindelwald",
+                afirmacao: "Errou"
+            }
+        ]
+    },    
+];
+
+
 let atual = 0;
 let perguntaAtual;
 let historiaFinal = "";
 
-//Assim como a variável atual (acima)
-//Crie uma variável com o nome pontos que inicie com 0
-
-let pontos = 0;
-
-
-function mostraPergunta(){
-    if(atual >= perguntas[escolha].length){
+function mostraPergunta() {
+    if (atual >= perguntas.length) {
         mostraResultado();
         return;
     }
-    perguntaAtual = perguntas[escolha][atual];
+    perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
     caixaAlternativas.textContent = "";
     mostraAlternativas();
 }
 
 function mostraAlternativas(){
-    for(const alternativa of perguntaAtual.alternativas){
+    for(const alternativa of perguntaAtual.alternativas) {
         const botaoAlternativas = document.createElement("button");
         botaoAlternativas.textContent = alternativa.texto;
         botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
-        caixaAlternativas.appendChild(botaoAlternativas)
+        caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
 
-function respostaSelecionada(opcaoSelecionada){
-    const afirmacao = opcaoSelecionada.afirmacao;
-    historiaFinal += afirmacao + " ";
+mostraPergunta();
+
+let contagemAfirmacoes = {}; // Objeto para armazenar a contagem de cada afirmação
+
+function respostaSelecionada(opcaoSelecionada) {
+    const afirmacaoSelecionada = opcaoSelecionada.afirmacao;
+    if (contagemAfirmacoes.hasOwnProperty(afirmacaoSelecionada)) {
+        contagemAfirmacoes[afirmacaoSelecionada]++;
+    } else {
+        contagemAfirmacoes[afirmacaoSelecionada] = 1;
+    }
+    
     atual++;
-    pontos += opcaoSelecionada.pontos;
-    console.log(pontos);
     mostraPergunta();
 }
 
-function mostraResultado(){
-    textoResultado.textContent = historiaFinal;
-    caixaPerguntas.textContent = "Resultado";
+function mostraResultado() {
+    const totalPerguntas = perguntas.length;
+    const totalAcertos = contagemAfirmacoes["Acertou"] || 0; // Se não houver acertos, considera como 0
+    const porcentagemAcertos = (totalAcertos / totalPerguntas) * 100;
+
+    caixaPerguntas.textContent = "Resultado do Quiz!";
+    textoResultado.textContent = `Você acertou ${totalAcertos} de ${totalPerguntas} perguntas. Sua taxa de acerto foi ${porcentagemAcertos.toFixed(2)}%.`;
     caixaAlternativas.textContent = "";
-    podiumMedalhas();  
 }
 
-//crie uma função podiumMedalhas
-//E verifique a quantidade de pontos
-//  - Se pontos igual a 3 ganha bronze, dentro dessa condicional:
-//    Utilize a linha de código abaixo para modificar o CSS e inserir uma medalha
-//    caixaPrincipal.style.backgroundImage = "url('img/bronze.png')";
-//    altere o textContent do caixaPerguntas para "Resultado da competição: 3 pontos é BRONZE!"
-//  - Se pontos igual a 4 ganha prata
-//    Utilize a linha de código abaixo para modificar o CSS e inserir uma medalha
-//    caixaPrincipal.style.backgroundImage = "url('img/prata.png')";
-//    altere o textContent do caixaPerguntas para "Resultado da competição: 4 pontos é PRATA!"
-//  - Se pontos igual a 5 ganha ouro
-//    Utilize a linha de código abaixo para modificar o CSS e inserir uma medalha
-//    caixaPrincipal.style.backgroundImage = "url('img/ouro.png')";
-//    altere o textContent do caixaPerguntas para "Resultado da competição: 5 pontos é OURO!"
-//  - Se pontos menor que 3
-//    Utilize a linha de código abaixo para modificar o CSS e inserir uma medalha
-//    caixaPrincipal.style.backgroundImage = "url('img/perdeu.png')";
-//    altere o textContent do caixaPerguntas para "Resultado da competição: PERDEU!";
-//2 Dentro de cada SE altere o conteúdo de texto de caixaPerguntas exemplo
-//     Quando ouro coloque "Resultado da competição: 3 pontos é BRONZE!";
-
-function podiumMedalhas(){
-    if(pontos==3){
-        caixaPrincipal.style.backgroundImage = "url('img/bronze.png')"
-        caixaPerguntas.textContent = "Resultado da competição: 3 pontos é BRONZE!";
-    }
-    if(pontos==4){
-        caixaPrincipal.style.backgroundImage = "url('img/prata.png')";
-        caixaPerguntas.textContent = "Resultado da competição: 4 pontos é PRATA!";
-    }
-    if(pontos==5){
-        caixaPrincipal.style.backgroundImage = "url('img/ouro.png')";
-        caixaPerguntas.textContent = "Resultado da competição: 5 pontos é OURO!";
-    }
-    if(pontos<3){
-        caixaPrincipal.style.backgroundImage = "url('img/perdeu.png')";
-        caixaPerguntas.textContent = "Resultado da competição: PERDEU!";
-    }
-}
-
-mostraPergunta(); 
