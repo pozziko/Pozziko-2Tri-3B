@@ -27,7 +27,7 @@ const perguntas = [
         ]
     },
     {
-        enunciado: "Qual é a comida favorita do Pozobom?",
+        enunciado: "Qual é a comida favorita do Pozzobom?",
         alternativas: [
             {
                 texto: "Macarrão",
@@ -42,7 +42,7 @@ const perguntas = [
                 afirmacao: "Errou"
             },
             {
-                texto: "Churasco",
+                texto: "Churrasco",
                 afirmacao: "Acertou"
             },
             {
@@ -73,7 +73,7 @@ const perguntas = [
         ]
     },
     {
-        enunciado: "O que vc acha do Pozobom?",
+        enunciado: "O que vc acha do Pozzobom?",
         alternativas: [
             {
                 texto: "Incrivel",
