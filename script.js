@@ -21,7 +21,7 @@ const perguntas = [
                 afirmacao: "Errou"
             },
             {
-                texto: "João Otávio Augusto Pozzobon Crepaldi da Silva",
+                texto: "João Otávio Augusto Pozzobon Reginaldo Crepaldi da Silva",
                 afirmacao: "Errou"
             }            
         ]
