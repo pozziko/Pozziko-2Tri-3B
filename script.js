@@ -38,6 +38,10 @@ const perguntas = [
                 afirmacao: "Errou"
             },
             {
+                texto: "Pizza",
+                afirmacao: "Errou"
+            },
+            {
                 texto: "Churasco",
                 afirmacao: "Acertou"
             },
@@ -51,19 +55,19 @@ const perguntas = [
         enunciado: "Quantos graus de miopia e de astigmatimo ele tem?",
         alternativas: [
             {
-                texto: "Remus Lupin",
+                texto: "2,00/0,50",
                 afirmacao: "Errou"
             },
             {
-                texto: "Severus Snape",
+                texto: "1,75/0,75",
                 afirmacao: "Acertou"
             },
             {
-                texto: "Gilderoy Lockhart",
+                texto: "2,75/0,25",
                 afirmacao: "Errou"
             },
             {
-                texto: "Minerva McGonagall",
+                texto: "1,50/1,50",
                 afirmacao: "Errou"
             }
         ]
@@ -93,19 +97,19 @@ const perguntas = [
         enunciado: "Qual animal de estimação o Pozzobom tem?",
         alternativas: [
             {
-                texto: "Bichento",
+                texto: "Um Gato",
                 afirmacao: "Errou"
             },
             {
-                texto: "Trevor",
+                texto: "Um Cachorro",
                 afirmacao: "Errou"
             },
             {
-                texto: "Perebas",
+                texto: "Nenhum",
                 afirmacao: "Acertou"
             },
             {
-                texto: "Edwiges",
+                texto: "Um Peixe",
                 afirmacao: "Errou"
             }
         ]
@@ -122,7 +126,7 @@ const perguntas = [
                 afirmacao: "Errou"
             },
             {
-                texto: "Santos",
+                texto: "Santos sem comentarios",
                 afirmacao: "Errou"
             },
             {
@@ -135,19 +139,19 @@ const perguntas = [
         enunciado: "Qual o dia do aniversario do Pozzobom?",
         alternativas: [
             {
-                texto: "Alvus Dumbledore",
+                texto: "04/09/2008",
                 afirmacao: "Acertou"
             },
             {
-                texto: "Severus Snape",
+                texto: "20/12/2007",
                 afirmacao: "Errou"
             },
             {
-                texto: "Minerva McGonagall",
+                texto: "28/06/2008",
                 afirmacao: "Errou"
             },
             {
-                texto: "Gellert Grindelwald",
+                texto: "13/02/2007",
                 afirmacao: "Errou"
             }
         ]
